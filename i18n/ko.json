@@ -1,0 +1,26 @@
+{
+    "change_user": "사용자 변경",
+    "user": "사용자 : ",
+
+    "write_todo": "할 일을 적어주세요",
+    "empty_todo": "할 일을 적어주세요!",
+    "enter": "입력",
+    "clear_todos": "할 일 초기화",
+    "ask_clear": "할 일을 전부 삭제하시겠습니까?",
+    "edit": "편집",
+    "delete": "삭제",
+
+    "create_user": "사용자 생성", 
+    "user_name": "사용자 이름: ",   
+    "confirm": "확인",
+    "cancel": "취소",
+    "same_name": "이미 같은 이름의 사용자가 있습니다!",
+    "warn_other_user": "현재 사용자는 삭제될 수 없습니다.",
+    "ask_x_user": "경고! 할 일들도 같이 삭제됩니다.",
+    "new_name": "새로운 이름",
+    "new_name_o": "확인",
+    "new_name_x": "취소",
+    "edit_same_name": "이미 같은 이름의 사용자가 있습니다. 다른 이름을 적어주세요",
+
+    "language_change": "언어 변경"
+}

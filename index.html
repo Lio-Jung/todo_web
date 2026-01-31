@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="language.js"></script>
+        <script src="night_day.js"></script>
+        <script src="manage_todo.js"></script>
+        <script src="change_user.js" defer></script>
+        <script src="setting.js" defer></script>
+        <link rel="stylesheet" href="style.css">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div id="titlegrid" class="inputLine">
+        <div>
+        <h3 class="title">TODO</h3> <!-- style="display: inline; margin:50px;"-->
+        </div>
+        <div id="titlegridRight">
+        <span id="user" style="font-size: small; margin-left: 1%;">User :  </span>
+        <span id="username" style="font-size: small; margin-left: 1%;">samlpe</span>
+        <input type="button" id='setting' class="btn" value = "☰" onclick="settingOpen()">
+        </div>
+        </div>
+
+        <div class="inputLine">
+        <input id="todo" type="text" placeholder="write todo">
+        <input id="addbutton" type="button" value="Enter" class="btn" onclick="manageTodo()">
+        <input id='clear_todos' type="button" value="Clear todos" class="btn" onclick="eraseAll()">
+        </div>
+
+        <div class="mygrid">
+        <div></div>
+        <div>
+        <div style="margin: 20px;"></div>
+        <div id="todoCheckContainer"></div>
+        </div>
+        <div></div>
+        </div>
+
+        <script>
+            let username = 'Lio';
+            let defaultLang = 'en';
+
+            //open page
+            document.getElementById("todo").focus();
+            let version = '';
+            let userMeta = { users : [], currentUser : '', currentLangauge : ''}; //!!
+            let todoArray = [];
+            const container = document.getElementById('todoCheckContainer');  
+            //version checking & update
+            version = localStorage.getItem('version');
+            if (version !== '1.1') {
+                version = '1.1';                
+                let temmeta = JSON.parse(localStorage.getItem('userMeta') || '[]');    
+                console.log(temmeta);
+                temmeta.currentLangauge = defaultLang;
+                localStorage.setItem('userMeta', JSON.stringify(temmeta));
+                localStorage.setItem('version', version);
+                
+            } else if ( version !== '1.0' ) { 
+                version = '1.0';                                                   //version change!!
+                let samplemeta = { users : ['sample'], currentUser : 'sample',};
+                let oldTodos = localStorage.getItem(`user_Lio`) || '[]';
+                localStorage.setItem('version', version);
+                localStorage.setItem('userMeta', JSON.stringify(samplemeta));
+                localStorage.setItem(`todo_sample`, oldTodos);
+            }
+            console.log('version : ' + version);
+
+            loadMeta();
+            loadTodo();
+            loadLang_renderTodo();
+
+            //add with "Enter" from textfield too like button
+            const tvalue = document.getElementById('todo');
+            tvalue.addEventListener("keydown", function(event) {
+                if (event.key === "Enter" || event.keyCode === 13) {
+                    event.preventDefault();
+                    document.getElementById("addbutton").click();
+                }
+            });
+
+
+            function loadLang_renderTodo() {
+                //load language + render todo
+                async function init() {
+                    await loadLang('en');
+                //rendering
+                todoArray.forEach(item => {
+                    renderTodo(item);
+                });
+                drawCUser();
+                valuesCUjs();
+                valuesSetjs();
+                valueLangjs();
+
+                renderLang();
+                }
+                init();
+            }
+        </script>
+        <br>           
+
+        <!--TODO logo at the bottom--> 
+
+    </body>
+</html>

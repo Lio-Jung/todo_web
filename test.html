@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+<h1> test field</h1>
+
+</head>
+<body>
+  <button id="abtn">자동차 선택하기</button>
+
+<!-- 결과 확인용 -->
+<p id="result"></p>
+
+<script>
+
+////////////////////////////    
+////////////////////////////    
+const input = document.createElement("input");
+input.type = 'text';
+const measure  = document.createElement('span');
+measure.style.visibility = 'hidden';
+
+
+let lastValue = "";
+
+
+/*
+input.addEventListener('input', () => {
+    if (input.offsetWidth > 100) {
+        alert(3);
+    } else {
+      alert(4);
+    }
+});
+*/
+
+
+input.addEventListener("input", () => {
+  measure.textContent = input.value;
+
+  if (measure.offsetWidth > 100) {
+    input.value = lastValue; // 입력 차단 (되돌림)
+  } else {
+    lastValue = input.value;
+  }
+});
+
+
+document.body.appendChild(input);
+document.body.appendChild(measure);
+
+////////////////////////////    
+////////////////////////////    
+
+
+//////////////////////////// version check & update
+////////////////////////////    
+let version = '';
+let userMeta = { users : [], currentUser : ''};
+let todoArray = [];
+let parsingTodo = [];
+
+// version check & update
+version = localStorage.getItem('version');
+console.log('version check :' + version); //
+if (version !== '1.0') {
+    version = '1.0';
+    let samplemeta = { users : ['sample'], currentUser : 'sample'};
+    localStorage.setItem('version', version);
+    localStorage.setItem('userMeta', JSON.stringify(samplemeta));
+    let testArr = localStorage.getItem('user_Lio');
+    localStorage.setItem('todo_sample', testArr);
+    console.log('erase todo_Lio');
+    console.log('erase whole local');
+}
+
+console.log('load user = getitem userMeta... ...');
+////////////////////////////
+////////////////////////////
+
+
+/*
+const saveUserMeta = () => {
+    alert(2);
+    //localStorage.setItem('userMeta',JSON.stringify(userMeta));
+};
+
+
+// 1. inputt text뜸. 이름 치면 그 value이동됨.
+let firstText = 'lio';
+// 2. user.users[value] = []; , user.currentUser = value
+user.users[firstText] = [];
+user.currentUser = firstText;
+
+// 3. todo 입력
+user.users[user.currentUser].push({ text: "arbeiten", completed: false });
+
+
+let userStr = JSON.stringify(user.users);
+alert(userStr);
+// 4. change user / make new user
+let newUser = 'mom';                     //inputt으로 새로 만들어질 이름들
+user.users[newUser] = [];
+user.currentUser = newUser;
+//todo입력
+user.users[user.currentUser].push({  text: "work",  completed: false});
+
+//5. change user click -> lio
+user.currentUser = 'lio';
+user.users[user.currentUser].push({  text: "game",  completed: false});
+
+userStr = JSON.stringify(user.users);
+alert(userStr);
+alert(JSON.stringify(user));
+
+//6. save
+
+
+
+//{"text":"arbeiten","completed":false},{"text":"game","completed":false}
+
+alert('end');
+*/
+
+
+
+</script>
+
+</body>
+</html>
